@@ -3,96 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دردشة المعتصم</title>
-
+<title>الهدهد شات </title>
 <style>
-    body {
-        margin: 0;
-        font-family: sans-serif;
-        background: #f0f0f0;
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-    }
-
-    .chat-box {
-        flex: 1;
-        overflow-y: auto;
-        padding: 10px;
-        background: #e5ddd5;
-    }
-
-    .message {
-        max-width: 70%;
-        padding: 10px;
-        margin: 5px 0;
-        border-radius: 10px;
-        font-size: 16px;
-    }
-
-    .me {
-        background: #dcf8c6;
-        margin-left: auto;
-    }
-
-    .other {
-        background: white;
-        margin-right: auto;
-    }
-
-    .input-area {
-        display: flex;
-        padding: 10px;
-        background: #fff;
-    }
-
-    input {
-        flex: 1;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    button {
-        margin-left: 10px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 5px;
-    }
+ body { margin: 0; font-family: sans-serif; background: #f0f0f0; display: flex; flex-direction: column; height: 100vh;}
+ .chat-box { flex: 1; overflow-y: auto; padding: 10px; background: #e5ddd5;}
+ .message { max-width: 70%; padding: 10px; margin: 5px 0; border-radius: 10px; font-size: 16px;}
+ .me { background: #dcf8c6; margin-left: auto; text-align: right;}
+ .other { background: white; margin-right: auto; text-align: left;}
+ .input-area { display: flex; padding: 10px; background: #fff; gap: 10px;}
+ input { flex: 1; padding: 10px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px;}
+ button { padding: 10px 20px; font-size: 16px; background: #4caf50; color: white; border: none; border-radius: 5px; cursor: pointer;}
 </style>
-
 </head>
 <body>
-
 <div class="chat-box" id="chatBox"></div>
-
 <div class="input-area">
-    <input type="text" id="msgInput" placeholder="اكتب رسالتك...">
-    <button onclick="sendMessage()">إرسال</button>
+ <input type="text" id="msgInput" placeholder="اكتب رسالتك...">
+ <button onclick="sendMessage('me')">أنا</button>
+ <button onclick="sendMessage('other')">الطرف الآخر</button>
 </div>
-
 <script>
-function sendMessage() {
-    let input = document.getElementById("msgInput");
-    let text = input.value.trim();
-    if (text === "") return;
-
-    let chatBox = document.getElementById("chatBox");
-
-    let msg = document.createElement("div");
-    msg.className = "message me";
-    msg.textContent = text;
-
-    chatBox.appendChild(msg);
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    input.value = "";
+function sendMessage(sender) {
+ let input = document.getElementById("msgInput");
+ let text = input.value.trim();
+ if (text === "") return;
+ let chatBox = document.getElementById("chatBox");
+ let msg = document.createElement("div");
+ msg.className = "message " + sender;
+ msg.textContent = text;
+ chatBox.appendChild(msg);
+ chatBox.scrollTop = chatBox.scrollHeight;
+ input.value = "";
 }
 </script>
-
 </body>
 </html>
